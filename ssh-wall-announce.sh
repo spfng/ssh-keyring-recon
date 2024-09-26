@@ -44,7 +44,7 @@ scan () {
 	local iter=0
 	while read host; do
 		iter=$(($iter + 1))
-		if test "$iter" = "10"; then
+		if test "$iter" = "5"; then
 			iter=0
 			sleep 1
 		fi
@@ -53,8 +53,8 @@ scan () {
 }
 
 main () {
-	for subnet in "${@}"; do
-		cidr "$subnet" | scan 80
+	while read host; do
+		cidr "$host" | scan 80
 	done
 }
 
